@@ -1,0 +1,37 @@
+#Popup{
+    .body{
+        position: fixed;
+        z-index: 1000;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        top: 0;
+        left: 0;
+    }
+
+    .body-content{
+        background: #fff;
+        width: 80%;
+        height: 80vh;
+        padding: 20px 40px;
+        border-radius: 0.425rem;
+        overflow: auto;
+        // transition: ease-in .1s;
+        z-index: 150;
+    }
+
+    .back-drop{
+        background: #000;
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        opacity: .3;
+        // transition: ease-in .1s;
+        z-index: 140;
+    }
+}

@@ -1,0 +1,44 @@
+/* * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: sans-serif;
+  }
+  
+  input,
+  textarea,
+  [contenteditable] {
+    font: inherit;
+    line-height: 1.5;
+    width: 600px;
+    padding: 8px 12px;
+    overflow: auto;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 4px;
+  }
+  
+  [contenteditable] {
+    min-height: 10rem;
+    border: 1px solid;
+    resize: both;
+  }
+.ck-content {
+  min-height: 10rem !important;
+ height: inherit !important;
+  max-height: 25rem !important;
+  font: inherit;
+  line-height: 1.5;
+  max-width: 100%;
+  padding: 8px 12px;
+  overflow: auto;
+}   */
+
+.ck-rounded-corners .ck.ck-editor__editable:not(.ck-editor__nested-editable),
+.ck.ck-editor__editable.ck-rounded-corners:not(.ck-editor__nested-editable) {
+  min-height: 40vh !important;
+  max-height: 90vh !important;
+}

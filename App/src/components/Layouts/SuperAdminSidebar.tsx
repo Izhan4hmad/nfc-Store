@@ -1,0 +1,152 @@
+import PerfectScrollbar from 'react-perfect-scrollbar';
+import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink, useLocation } from 'react-router-dom';
+import { toggleSidebar } from '../../store/themeConfigSlice';
+import { IRootState } from '../../store';
+import { useState, useEffect } from 'react';
+import { LayoutDashboard, Users, Package, Settings, ChevronLeft } from 'lucide-react';
+
+const SuperAdminSidebar = () => {
+    const [currentMenu, setCurrentMenu] = useState<string>('');
+    const themeConfig = useSelector((state: IRootState) => state.themeConfig);
+    const semidark = useSelector((state: IRootState) => state.themeConfig.semidark);
+    const location = useLocation();
+    const path = location.pathname;
+
+    const pathSegments = path.split('/').filter(Boolean);
+    const lastParam = pathSegments.pop();
+    const middleware = `/admin`;
+
+    const Menus = [
+        {
+            title: 'Dashboard',
+            icon: (
+                <LayoutDashboard
+                    className={`shrink-0 ${lastParam === 'dashboard' ? '!text-white' : '!text-white-dark'}`}
+                    size={18}
+                />
+            ),
+            route: 'dashboard',
+            key: 'dashboard',
+        },
+        {
+            title: 'Users',
+            icon: (
+                <Users
+                    className={`shrink-0 ${lastParam === 'users' ? '!text-white' : '!text-white-dark'}`}
+                    size={18}
+                />
+            ),
+            route: 'users',
+            key: 'users',
+        },
+        {
+            title: 'Plan',
+            icon: (
+                <Package
+                    className={`shrink-0 ${lastParam === 'plan' ? '!text-white' : '!text-white-dark'}`}
+                    size={18}
+                />
+            ),
+            route: 'plan',
+            key: 'plan',
+        },
+        {
+            title: 'Setting',
+            icon: (
+                <Settings
+                    className={`shrink-0 ${lastParam === 'setting' ? '!text-white' : '!text-white-dark'}`}
+                    size={18}
+                />
+            ),
+            route: 'setting',
+            key: 'setting',
+        },
+    ];
+
+    const dispatch = useDispatch();
+    const { t } = useTranslation();
+
+    const toggleMenu = (value: string) => {
+        setCurrentMenu((oldValue) => (oldValue === value ? '' : value));
+    };
+
+    useEffect(() => {
+        const selector = document.querySelector('.sidebar ul a[href="' + window.location.pathname + '"]');
+        if (selector) {
+            selector.classList.add('active');
+            const ul: any = selector.closest('ul.sub-menu');
+            if (ul) {
+                let ele: any = ul.closest('li.menu').querySelectorAll('.nav-link') || [];
+                if (ele.length) {
+                    ele = ele[0];
+                    setTimeout(() => {
+                        ele.click();
+                    });
+                }
+            }
+        }
+    }, []);
+
+    useEffect(() => {
+        if (window.innerWidth < 1024 && themeConfig.sidebar) {
+            dispatch(toggleSidebar());
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [location]);
+
+    return (
+        <div className="dark">
+            <nav
+                className={`sidebar fixed min-h-screen h-full top-0 bottom-0 w-[260px] shadow-[5px_0_25px_0_rgba(94,92,154,0.1)] z-50 transition-all duration-300 ${
+                    semidark ? 'text-white-dark' : ''
+                }`}
+            >
+                <div className="bg-white dark:bg-black h-full">
+                    <div className="flex justify-between items-center px-4 py-3">
+                        <NavLink to={`${middleware}/dashboard`} className="main-logo flex items-center shrink-0">
+                            <img
+                                className="w-[170px] ml-[5px] flex-none"
+                                src="https://app.mycrmsim.com/assets/media/auth/mycrmsim.webp"
+                                alt="logo"
+                            />
+                        </NavLink>
+                        <button
+                            type="button"
+                            className="collapse-icon w-8 h-8 rounded-full flex items-center hover:bg-gray-500/10 dark:hover:bg-dark-light/10 dark:text-white-light transition duration-300 rtl:rotate-180"
+                            onClick={() => dispatch(toggleSidebar())}
+                        >
+                            <ChevronLeft className="m-auto rotate-90" size={18} />
+                        </button>
+                    </div>
+                    <PerfectScrollbar className="h-[calc(100vh-80px)] relative mt-5">
+                        <ul className="relative font-semibold space-y-0.5 p-4 py-0">
+                            {Menus.map((menu) => (
+                                <li className="menu nav-item" key={menu.key} onClick={() => toggleMenu(menu.key)}>
+                                    <NavLink to={`${middleware}/${menu.route}`}>
+                                        <button
+                                            type="button"
+                                            className={`${
+                                                lastParam === menu.key
+                                                    ? 'text-white'
+                                                    : 'text-white-dark'
+                                            } nav-link group w-full hover:text-white`}
+                                        >
+                                            <div className="flex items-center">
+                                                {menu.icon}
+                                                <span className="ltr:pl-3 rtl:pr-3">{menu.title}</span>
+                                            </div>
+                                        </button>
+                                    </NavLink>
+                                </li>
+                            ))}
+                        </ul>
+                    </PerfectScrollbar>
+                </div>
+            </nav>
+        </div>
+    );
+};
+
+export default SuperAdminSidebar;

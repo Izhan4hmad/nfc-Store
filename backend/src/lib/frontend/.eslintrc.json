@@ -1,0 +1,48 @@
+{}
+// {
+//   "env": {
+//     "browser": true,
+//     "es2021": true
+//   },
+//   "extends": ["plugin:react/recommended", "airbnb", "prettier"],
+//   "parserOptions": {
+//     "ecmaFeatures": {
+//       "jsx": true
+//     },
+//     "ecmaVersion": 12,
+//     "sourceType": "module"
+//   },
+//   "plugins": ["react", "prettier"],
+//   "rules": {
+//     "import/prefer-default-export": "off",
+//     "switch-colon-spacing": "off",
+//     "no-underscore-dangle": "off",
+//     "semi": ["error", "never"],
+//     "camelcase": "off",
+//     "no-unused-expressions": "off",
+//     "eqeqeq": "off",
+//     "key-spacing": [
+//       "error",
+//       {
+//         "align": {
+//           "beforeColon": true,
+//           "afterColon": true,
+//           "on": "colon",
+//           "mode": "strict"
+//         }
+//       }
+//     ],
+//     // "prettier/prettier": "warn",
+//     "default-param-last": "off",
+//     "react/react-in-jsx-scope": "off",
+//     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+//     "react/jsx-props-no-spreading": [
+//       1,
+//       {
+//         "custom": "ignore"
+//       }
+//     ],
+//     "react/jsx-curly-spacing": [2, "never"]
+//   },
+//   "settings": { "import/resolver": { "node": { "paths": ["src"] } } }
+// }

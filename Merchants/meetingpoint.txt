@@ -1,0 +1,25 @@
+1: saas data (sales & stripe info & subscriptions)
+2: plan break down, which plan is high revenue
+3: otal time on ticket remove it
+4: total login hours (only hors to show)
+5: remove subscription
+6: total year rev to show in chart
+7: saas mode turn into progress bar (first target is 100 and second one is 500)
+8: login to show in bar chart with days like how many login on monday and so on other days
+9: churn stats to show in bar chart to show in red bar how many companies churned
+10: features and services used (remove it)
+11: feedback page show location, change colors, and show date as well
+12: health page (correct premium word spell)
+13: health detail page have some ui issue on feature used and make the user list presentable
+14: total count on subaccount on health page
+15: add address, status (rupert sent in whatapp) and location_id on health page subaccount list and remove Services Used
+16: update status on login active (ref 15) 30 > stole, 10 > <30, <10
+17: to make different color on plan saas companies list
+18: subscription page need to be look around
+19: plan & packages need to be look around
+20: create a services crud that will be selectable on plan creating
+21: if 9 is happy and one is unhappy (it will be happy due to majority on saas companies list page)
+22: location_id, location address add on regular companies
+23: premium companies same as (22)
+24: start and end of subscription for customsers on churned companies
+25: total time per page to show on dashboard as well
